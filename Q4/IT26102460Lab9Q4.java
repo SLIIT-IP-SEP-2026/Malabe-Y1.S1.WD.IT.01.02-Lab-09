@@ -21,21 +21,23 @@ public class IT26102460Lab9Q4{
 	}
 	//Method to print grades and details
 	public static void printDetails(String name, double finalMark, char grade){
-		System.out.print(name + "\t\t" + finalMark + "\t\t" + grade);
+		System.out.printf("%s \t\t %.2f \t\t %c\n", name, finalMark, grade);
 	}
-	//Printing all the details
+	
+	//Main Method
 	public static void main(String[] args){
 		Scanner input = new Scanner(System.in);
 		
 		double assignmentMark, examMark;
+		String name[] = new String[5];
+		double finalMark[] = new double[5];
+		char grade[] = new char[5];
 		
-		System.out.println("Name\t\tFinal Mark\tGrade");
+		for(int i=0; i < 5; i++){
 		
-		for(int i=1; i <= 5; i++){
-		
-		System.out.println("\nStudent" + i);
+		System.out.println("\nStudent" + (i+1));
 		System.out.print("Enter Name: ");
-		String name = input.nextLine();
+		name[i] = input.nextLine();
 		
 		System.out.print("Enter Assignment mark: ");
 		assignmentMark = input.nextDouble();
@@ -44,10 +46,17 @@ public class IT26102460Lab9Q4{
 		examMark = input.nextDouble();
 		input.nextLine();
 		
-		double finalMark = calcFinalMark(assignmentMark, examMark);
-		char grade = findGrades(finalMark);
-		
-		printDetails(name, finalMark, grade);
+		finalMark[i]= calcFinalMark(assignmentMark, examMark);
+		grade[i] = findGrades(finalMark[i]);
 		}
+		
+		//Header
+		System.out.println("\nName\t\tFinal Mark\tGrade");
+		
+		//Printing the details
+		for(int i=0; i<5; i++){
+			printDetails(name[i], finalMark[i], grade[i]);
+		}
+
 	}
 }
